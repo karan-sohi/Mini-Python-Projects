@@ -19,7 +19,14 @@ def result_calculator(my_cards, computer_cards):
     computer_cards_sum = sum(computer_cards)
     computer_margin = 21 - computer_cards_sum
     my_cards_margin = 21 - my_cards_sum
-
+    
+    if 11 in computer_cards and sum(computer_cards) > 21:
+        computer_cards.remove(11)
+        computer_cards.append(1)
+    if sum(computer_cards) == 21 and len(computer_cards) == 2:
+        print("You lost. Computer hits BlackJack. 😨")
+    if sum(my_cards) == 21 and len(my_cards) == 2:
+        print("You win with a BlackJack 😎")
     if my_cards_sum > 21:
         print("You went over. You lose 😤")
     elif computer_cards_sum > 21:
@@ -42,13 +49,15 @@ def main():
 
     print(f"Computer's first card: {computer_cards[0]}")
     get_card = input(f"Type 'y' to get another card, type 'n' to pass: ")
+    while sum(computer_cards) <= 17:
+        one_card_adder(computer_cards)
     while get_card == 'y':
         one_card_adder(my_cards)
         print(f"Your cards: {my_cards}. Final Score: {sum(my_cards)}")
-        while sum(computer_cards) <= 17:
-            one_card_adder(computer_cards)
         if sum(my_cards) <= 21:
             get_card = input(f"Type 'y' to get another card, type 'n' to pass: ")
+        else:
+            get_card = 'n'
 
 
 
