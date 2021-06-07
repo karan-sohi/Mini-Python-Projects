@@ -1,4 +1,5 @@
 import random
+from logo import logo
 card_list = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def random_card_generator():
@@ -32,6 +33,7 @@ def result_calculator(my_cards, computer_cards):
 
 
 def main():
+    print(logo)
     get_card = 'y'
     my_cards = random_card_generator()
     computer_cards = random_card_generator()
